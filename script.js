@@ -1,33 +1,60 @@
-const baseUrl = "https://summer-glitter-idk.laggiare.workers.dev";  // Making sure this is my correct Worker URL
+const translations = {
+    en: {
+        enterCity: "Enter city name",
+        getWeather: "Get Weather",
+        temperature: "Temperature",
+        weather: "Weather",
+        cityNotFound: "City not found!",
+        failedFetch: "Failed to retrieve weather data.",
+    },
+    sr: {
+        enterCity: "Unesite ime grada",
+        getWeather: "Prikaži vreme",
+        temperature: "Temperatura",
+        weather: "Vreme",
+        cityNotFound: "Grad nije pronađen!",
+        failedFetch: "Neuspešno preuzimanje podataka o vremenu.",
+    }
+};
 
+// Function to change UI text when language is switched
+function changeLanguage() {
+    const lang = document.getElementById("language").value;
+
+    document.getElementById("city").placeholder = translations[lang].enterCity;
+    document.getElementById("getWeatherBtn").textContent = translations[lang].getWeather;
+}
+
+// Function to fetch weather data
 async function getWeather() {
     const city = document.getElementById("city").value;
+    const lang = document.getElementById("language").value;
+
     if (!city) {
-        alert("Please enter a city name");
+        alert(translations[lang].enterCity);
         return;
     }
 
-    const url = `${baseUrl}?city=${city}`;
+    const workerURL = "https://summer-glitter-idk.laggiare.workers.dev";
+    const url = `${workerURL}/?city=${city}`;
 
     try {
         const response = await fetch(url);
         const data = await response.json();
 
-        if (data.cod === 200) {
-            // Successfully fetched weather data
-            document.getElementById("weather-result").innerHTML = `
-                <h3>${data.name}, ${data.sys.country}</h3>
-                <p>Temperature: ${data.main.temp}°C</p>
-                <p>Weather: ${data.weather[0].description}</p>
-                <p>Wind Speed: ${data.wind.speed} m/s</p>
-                <p>Humidity: ${data.main.humidity}%</p>
-            `;
-        } else {
-            // Handle error if city not found
-            document.getElementById("weather-result").innerHTML = "City not found!";
+        if (data.cod === "404") {
+            document.getElementById("weather-result").innerHTML = translations[lang].cityNotFound;
+            return;
         }
+
+        document.getElementById("weather-result").innerHTML = `
+            <h3>${data.name}, ${data.sys.country}</h3>
+            <p>${translations[lang].temperature}: ${data.main.temp}°C</p>
+            <p>${translations[lang].weather}: ${data.weather[0].description}</p>
+        `;
+
     } catch (error) {
-        console.log("Error fetching weather data", error);
-        document.getElementById("weather-result").innerHTML = `Failed to retrieve weather data: ${error.message}`;
+        document.getElementById("weather-result").innerHTML = translations[lang].failedFetch;
+        console.error("Error fetching weather data:", error);
     }
 }
