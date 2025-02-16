@@ -1,3 +1,5 @@
+const baseUrl = "https://summer-glitter-idk.templates.workers.dev"; // Replace with your actual Worker URL
+
 async function getWeather() {
     const city = document.getElementById("city").value;
     if (!city) {
@@ -5,11 +7,8 @@ async function getWeather() {
         return;
     }
 
-    const apiKey = "YOUR_API_KEY_HERE";
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
     try {
-        const response = await fetch(url);
+        const response = await fetch(`${baseUrl}?city=${city}`);
         const data = await response.json();
 
         if (data.cod === "404") {
