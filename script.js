@@ -58,29 +58,3 @@ async function getWeather() {
         console.error("Error fetching weather data:", error);
     }
 }
-function toggleDropdown() {
-    document.querySelector(".dropdown-content").classList.toggle("show");
-}
-
-function changeLanguage(lang) {
-    const selectedLang = document.getElementById("selected-language");
-    
-    if (lang === "en") {
-        selectedLang.innerHTML = "🇬🇧";
-    } else if (lang === "sr") {
-        selectedLang.innerHTML = "🇷🇸";
-    }
-
-    // Apply the language change (Update UI elements)
-    updateTextLanguage(lang);
-
-    // Hide dropdown after selection
-    document.querySelector(".dropdown-content").classList.remove("show");
-}
-
-// Close dropdown when clicking outside
-window.onclick = function(event) {
-    if (!event.target.matches('#selected-language')) {
-        document.querySelector(".dropdown-content").classList.remove("show");
-    }
-};

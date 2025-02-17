@@ -8,20 +8,11 @@
 </head>
 <body>
 
-    <!-- Custom Language Selector -->
-    <div class="language-dropdown">
-        <button id="selected-language" onclick="toggleDropdown()">
-            <img src="images/gb-flag.png" alt="English Flag"> English
-        </button>
-        <div class="dropdown-content" id="language-options">
-            <div onclick="changeLanguage('en', 'images/gb-flag.png')">
-                <img src="images/gb-flag.png" alt="English Flag"> English
-            </div>
-            <div onclick="changeLanguage('sr', 'images/rs-flag.png')">
-                <img src="images/rs-flag.png" alt="Serbian Flag"> Српски
-            </div>
-        </div>
-    </div>
+<!-- Language Selector -->
+<select id="language" onchange="changeLanguage()">
+    <option value="en">&#127468;&#127463; English</option> <!-- 🇬🇧 -->
+    <option value="sr">&#127479;&#127480; Српски</option> <!-- 🇷🇸 -->
+</select>
 
     <!-- City Input -->
     <input type="text" id="city" placeholder="Enter city name">
