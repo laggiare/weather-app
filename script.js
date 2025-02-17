@@ -6,7 +6,7 @@ const translations = {
         weather: "Weather",
         cityNotFound: "City not found!",
         failedFetch: "Failed to retrieve weather data.",
-        kosovoMessage: "🚩 Kosovo is Serbia! 🇷🇸"
+        kosovoMessage: "Kosovo is Serbia! 🇷🇸"
     },
     sr: {
         enterCity: "Unesite ime grada",
@@ -15,7 +15,7 @@ const translations = {
         weather: "Vreme",
         cityNotFound: "Grad nije pronađen!",
         failedFetch: "Neuspešno preuzimanje podataka o vremenu.",
-        kosovoMessage: "🚩 Kosovo je Srbija! 🇷🇸"
+        kosovoMessage: "Kosovo je Srbija! 🇷🇸"
     }
 };
 
@@ -42,7 +42,6 @@ async function getWeather() {
         document.getElementById("weather-result").innerHTML = `
             <div style="padding: 15px; background-color: white; border-radius: 10px; box-shadow: 0px 6px 10px rgba(0,0,0,0.1);">
                 <h3>${translations[lang].kosovoMessage}</h3>
-                <p>🤷‍♂️ But let's check the weather anyway... ⏳</p>
             </div>
         `;
         return;
