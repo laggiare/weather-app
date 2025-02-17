@@ -7,19 +7,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Language Selector -->
-    <label for="language">Language:</label>
-    <select id="language" onchange="changeLanguage()">
-        <option value="en">English</option>
-        <option value="sr">srpski</option>
-    </select>
+    <div class="container">
+        <!-- Language Selector -->
+        <label for="language">Language:</label>
+        <select id="language" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="sr">srpski</option>
+        </select>
 
-    <!-- City Input -->
-    <input type="text" id="city" placeholder="Enter city name">
-    <button id="getWeatherBtn" onclick="getWeather()">Get Weather</button>
+        <!-- City Input -->
+        <input type="text" id="city" placeholder="Enter city name">
+        <button id="getWeatherBtn" onclick="getWeather()">Get Weather</button>
 
-    <!-- Weather Result -->
-    <div id="weather-result"></div>
+        <!-- Weather Result -->
+        <div id="weather-result"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>
