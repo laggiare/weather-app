@@ -22,7 +22,6 @@ const translations = {
 // Function to change UI text when language is switched
 function changeLanguage() {
     const lang = document.getElementById("language").value;
-
     document.getElementById("city").placeholder = translations[lang].enterCity;
     document.getElementById("getWeatherBtn").textContent = translations[lang].getWeather;
 }
@@ -64,32 +63,13 @@ async function getWeather() {
             <p>${translations[lang].temperature}: ${data.main.temp}°C</p>
             <p>${translations[lang].weather}: ${data.weather[0].description}</p>
         `;
-
     } catch (error) {
         document.getElementById("weather-result").innerHTML = translations[lang].failedFetch;
         console.error("Error fetching weather data:", error);
     }
 }
+
+// Set initial language on page load
 document.addEventListener("DOMContentLoaded", () => {
-    const darkModeToggle = document.getElementById("darkModeToggle");
-    const body = document.body;
-
-    // Check local storage for dark mode preference
-    if (localStorage.getItem("darkMode") === "enabled") {
-        body.classList.add("dark-mode");
-        darkModeToggle.textContent = "☀️ Light Mode";
-    }
-
-    // Toggle dark mode
-    darkModeToggle.addEventListener("click", () => {
-        body.classList.toggle("dark-mode");
-
-        if (body.classList.contains("dark-mode")) {
-            localStorage.setItem("darkMode", "enabled");
-            darkModeToggle.textContent = "☀️ Light Mode";
-        } else {
-            localStorage.setItem("darkMode", "disabled");
-            darkModeToggle.textContent = "🌙 Dark Mode";
-        }
-    });
+    changeLanguage();
 });
